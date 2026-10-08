@@ -15,19 +15,19 @@ Konkret:
 - Commit-Messages kurz und auf Deutsch oder Englisch (konsistent mit vorherigen Commits), beschreiben **was** sich geändert hat, nicht nur "update".
 - Diese Regel gilt als dauerhafte Freigabe: Commit und Push nach jeder Änderung erfolgen **ohne Rückfrage**.
 
-### Geltungsbereich: nur `/Users/stephanfossl/feelochamp_oel`
+### Geltungsbereich: nur `C:/Users/sfoes/feelochamp_zwa`
 
-- Die Auto-Commit/Push-Freigabe gilt **ausschließlich** für das lokale Verzeichnis `/Users/stephanfossl/feelochamp_oel` und Pushes nach `origin` (`feelochamp_oel`).
-- Vor jedem Commit/Push prüfen: `git rev-parse --show-toplevel` muss `/Users/stephanfossl/feelochamp_oel` ergeben und `git remote get-url origin` muss `https://github.com/einseitensprung/feelochamp_oel.git` sein. Stimmt eines nicht, **nicht** committen/pushen, sondern den Nutzer fragen.
-- Andere lokale Ordner/Repos (z. B. `feelochamp_db`, `feelochamp_el`, `feelochamp_nl`, `feelochamp`) werden **nie** automatisch committed oder gepusht — auch nicht, wenn dieses Repo dorthin kopiert oder geklont wurde.
+- Die Auto-Commit/Push-Freigabe gilt **ausschließlich** für das lokale Verzeichnis `C:/Users/sfoes/feelochamp_zwa` und Pushes nach `origin` (`feelochamp_zwa`).
+- Vor jedem Commit/Push prüfen: `git rev-parse --show-toplevel` muss `C:/Users/sfoes/feelochamp_zwa` ergeben und `git remote get-url origin` muss `https://github.com/einseitensprung/feelochamp_zwa.git` sein. Stimmt eines nicht, **nicht** committen/pushen, sondern den Nutzer fragen.
+- Andere lokale Ordner/Repos (z. B. `feelochamp_oel`, `feelochamp_db`, `feelochamp_el`, `feelochamp_nl`, `feelochamp`) werden **nie** automatisch committed oder gepusht — auch nicht, wenn dieses Repo dorthin kopiert oder geklont wurde.
 - Nur Dateien innerhalb dieses Ordners committen; keine Änderungen außerhalb davon.
 
 ### Remotes
 
-Dieses Repo (`feelochamp_oel`) ist eine Kopie von `feelochamp_db` (das wiederum eine Kopie von `feelochamp_el` ist).
+Dieses Repo (`feelochamp_zwa`, 2. Liga) ist eine Kopie von `feelochamp_oel` (das wiederum eine Kopie von `feelochamp_db` → `feelochamp_el` ist).
 
-- `origin` = `https://github.com/einseitensprung/feelochamp_oel.git` — **hierhin wird gepusht** (`git push origin main`).
-- `upstream` = `https://github.com/einseitensprung/feelochamp_db.git` — nur Quelle, **niemals dorthin pushen**.
+- `origin` = `https://github.com/einseitensprung/feelochamp_zwa.git` — **hierhin wird gepusht** (`git push origin main`).
+- `upstream` = `https://github.com/einseitensprung/feelochamp_oel.git` — nur Quelle, **niemals dorthin pushen**.
 
 ## Build-Workflow
 
@@ -55,6 +55,6 @@ Quelltemplate **und** das neu gebaute HTML gehören in denselben Commit — nie 
 - Keine echten Vereinswappen oder das Original-Hintergrundfoto (UEFA-Bildmaterial/Marken sind geschützt) verwenden — stattdessen eigene Initialen-Badges/Grafiken, siehe README. Ausnahme: das freigestellte Champ-Porträt (`assets/bono2026.png`, von einseitensprung.at) darf auf der "Aktueller Champ"-Karte verwendet werden.
 - Bootstrap wird lokal vendored (`assets/bootstrap.min.css`, `assets/bootstrap.bundle.min.js`) und von jeder Seite per `<link>`/`<script src>` verlinkt (nicht inline eingebettet) — keine externen CDN-Requests, aber die Seiten sind dadurch nicht mehr einzeln eigenständig: `assets/` muss immer mitkopiert werden.
 - Die Google Fonts (Bebas Neue, Inter, JetBrains Mono) sind ebenfalls lokal vendored: `assets/fonts.css` (`@font-face`, nur latin/latin-ext-Subsets) plus die `.woff2`-Dateien in `assets/fonts/`, verlinkt per `<link rel="stylesheet" href="assets/fonts.css">` statt `fonts.googleapis.com`. Inter und JetBrains Mono sind Variable Fonts — je Subset eine Datei mit `font-weight` als Bereich (z. B. `400 800`) deckt alle gebrauchten Schnitte ab, keine Datei pro Schriftschnitt nötig.
-- Theme angelehnt an bundesliga.at: Anthrazit `#212121` als Grund (Navbar ebenso), dunkle Karten `#333333` mit Kopf-/Tabellenkopf `#1a1a1a` (`--card-*`-Tokens in `:root`), **Pink `#ff00b3` (`--cyan`)** als Hauptakzent (Akzent-Text `--cyan-soft` `#ff33c2`, weiße Schrift auf vollen Pink-Flächen = `--on-accent`), **Türkis `#00fff5` (`--blue`)** als Zweitakzent und zweiter Verlaufston (Admin-Link, Pink→Türkis-Verläufe mit schwarzer Schrift = `--on-gradient`), Hintergrund-Schimmer in Grau statt farbig, Radien 8px (wie `--radius: .5rem` auf bundesliga.at). Die Token-Namen `--cyan`/`--blue` sind historisch (`--cyan` = Pink, `--blue` = Türkis). Neue Farben über diese Tokens statt als Hex-Literale einbauen. Keine Bundesliga-/ÖFBL-Logos, die Hintergrund-Swirl-Grafik oder die Schrift „Nexa“ verwenden.
+- Theme angelehnt an 2liga.at (2. Liga, gleiche Plattform wie bundesliga.at): Anthrazit `#212121` als Grund (Navbar ebenso), dunkle Karten `#333333` mit Kopf-/Tabellenkopf `#1a1a1a` (`--card-*`-Tokens in `:root`), **Orange-Rot `#ea4225` (`--cyan`)** als Hauptakzent (Akzent-Text `--cyan-soft` `#ff6b4d`, weiße Schrift auf vollen Rot-Flächen = `--on-accent`), **Mint `#33ffb8` (`--blue`)** als Zweitakzent und zweiter Verlaufston (Admin-Link, Rot→Mint-Verläufe mit schwarzer Schrift = `--on-gradient`), Hintergrund-Schimmer in Grau statt farbig, Radien 8px (wie `--radius: .5rem` auf 2liga.at). Die Token-Namen `--cyan`/`--blue` sind historisch (`--cyan` = Orange-Rot, `--blue` = Mint). Neue Farben über diese Tokens statt als Hex-Literale einbauen. Keine Bundesliga-/ÖFBL-Logos, die Hintergrund-Swirl-Grafik oder die Schrift „Nexa“ verwenden.
 - Die Custom-Styles aller Seiten liegen gemeinsam in `assets/main.css` (kein `<style>`-Block mehr in den Templates). Seitenübergreifendes JS, das auf jeder Seite gleich ist, kommt als eigenes `assets/*.js` (z. B. `assets/datenschutz.js` = Datenschutz-Lightbox, baut ihr Overlay selbst und hängt sich an Links mit Klasse `.ds-open`), von jedem Template per `<script src>` eingebunden — kein Copy-Paste des Markups in alle vier Templates. Jedes Template setzt eine eigene Klasse auf `<body>` (`page-home` / `page-spiele` / `page-aufsteiger` / `page-start`, plus `page-default` für schlichte Unterseiten wie `regeln.html`) — darüber sind die paar Regeln gescoped, die sich je Seite unterscheiden (`.content-card`, `.btn-kickoff`, `.crest`, Navbar-Feinheiten). Neue seitenspezifische Abweichungen bei geteilten Klassennamen genauso scopen, statt eine bestehende Regel einfach zu überschreiben.
 - `start.html` ist das Dashboard, auf das der Demo-Login von `index.html` weiterleitet (kein echtes Backend — `index.html`s Login-Formular navigiert nach kurzem Bestätigungs-Toast einfach zu `start.html`). Die "Aktueller Champ"-Karte zeigt den Spitznamen + das freigestellte Champ-Porträt (`assets/bono2026.png`) im runden Rahmen (`.champ-avatar.has-photo` / `.champ-photo`).
